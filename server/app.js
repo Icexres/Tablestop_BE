@@ -5,6 +5,8 @@ const logger = require('morgan');
 require('dotenv').config({ path: './.env' });
 const errorHandler = require('errorhandler');
 const jwt = require('jsonwebtoken');
+const { routes } = require('./routes');
+const db = require('./models');
 
 /* Create Express Server. */
 const app = express();

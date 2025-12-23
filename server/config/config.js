@@ -6,7 +6,7 @@ module.exports = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "mysql",
+    dialect: "postgres",
     dialectOptions: {
       connectTimeout: 3000,
       dateStrings: true,
@@ -24,7 +24,7 @@ module.exports = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "mysql",
+    dialect: "postgres",
     dialectOptions: {
       connectTimeout: 3000,
       dateStrings: true,
@@ -42,7 +42,7 @@ module.exports = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "mysql",
+    dialect: "postgres",
     dialectOptions: {
       connectTimeout: 3000,
       dateStrings: true,
