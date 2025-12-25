@@ -1,1 +1,1 @@
-# sequelize-boilerplate
+
