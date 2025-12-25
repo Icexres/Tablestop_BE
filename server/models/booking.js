@@ -1,57 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
-    restaurant_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
-    table_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
-    booking_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-    start_time: {
-      type: DataTypes.TIME,
-      allowNull: false,
-    },
-    end_time: {
-      type: DataTypes.TIME,
-      allowNull: false,
-    },
-    status: {
-      type: DataTypes.ENUM('PENDING', 'CONFIRMED', 'CANCELLED'),
-      defaultValue: 'PENDING',
-    },
+    id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
+    restaurant_id: DataTypes.INTEGER,
+    booker_id: DataTypes.INTEGER,
+    booked_time: DataTypes.DATE,
+    end_time: DataTypes.DATE,
   }, {
     tableName: 'bookings',
-    timestamps: true,
+    timestamps: false,
     underscored: true,
   });
 
   Booking.associate = (models) => {
-    Booking.belongsTo(models.User, {
-      foreignKey: 'user_id',
-    });
-    Booking.belongsTo(models.Restaurant, {
-      foreignKey: 'restaurant_id',
-    });
-    Booking.belongsTo(models.RestaurantTable, {
-      foreignKey: 'table_id',
-    });
-    Booking.hasMany(models.BookingItem, {
-      foreignKey: 'booking_id',
-    });
+    Booking.belongsTo(models.Restaurant, { foreignKey: 'restaurant_id' });
+    Booking.belongsTo(models.User, { foreignKey: 'booker_id' });
+    Booking.hasMany(models.BookedTable, { foreignKey: 'booking_id' });
   };
 
   return Booking;
