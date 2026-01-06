@@ -6,6 +6,7 @@ require('dotenv').config({ path: './.env' });
 const errorHandler = require('errorhandler');
 const jwt = require('jsonwebtoken');
 const { routes } = require('./routes');
+const protectedRoutes = require('./routes/protected.routes');
 const db = require('./models');
 
 /* Create Express Server. */
@@ -24,11 +25,12 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (_req, res) => {
   res.status(200).json({
     data: {
-      message: 'API endpoints for .',
+      message: 'API endpoints for Tablestop.',
     },
   });
 });
   
+app.use('/api', routes);
 
 app.use((req, res, next) => {
   let token = req.headers['x-access-token'] || req.headers.authorization; // Express headers are auto converted to lowercase
@@ -53,7 +55,10 @@ app.use((req, res, next) => {
     });
   }
 });
+// Protected routes
+// app.use('/api/protected', protectedRoutes);
 
+app.use('/api', protectedRoutes);
 /**
  * * Error Handler. Provides full stack - disabled from production
  */
