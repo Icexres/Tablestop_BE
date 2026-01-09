@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     email: { type: DataTypes.STRING, unique: true },
     password: DataTypes.STRING,
     role: { type: DataTypes.ENUM('admin', 'user'), defaultValue: 'user' },
-    profile_photo_url: DataTypes.STRING,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {
@@ -19,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Restaurant, { foreignKey: 'admin_id' });
     User.hasMany(models.Booking, { foreignKey: 'booker_id' });
     User.hasMany(models.ReqVerify, { foreignKey: 'requester_id' });
+    User.hasOne(models.Profile, { foreignKey: 'user_id', as: 'profile' });
   };
 
   return User;

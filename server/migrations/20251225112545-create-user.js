@@ -8,7 +8,6 @@ module.exports = {
       email: { type: Sequelize.STRING, unique: true },
       password: { type: Sequelize.STRING },
       role: { type: Sequelize.ENUM('admin', 'user'), defaultValue: 'user' },
-      profile_photo_url: { type: Sequelize.STRING },
       created_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
       updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
     });
