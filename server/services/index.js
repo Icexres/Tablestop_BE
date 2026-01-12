@@ -1,11 +1,9 @@
 const authService = require('./authService');
-// const restaurantService = require('./restaurant.service');
-// const bookingService = require('./booking.service');
-// const menuService = require('./menu.service');
+const getService = require('./getService');
+const updateService = require('./updateService');
 
 module.exports = {
   authService,
-  // restaurantService,
-  // bookingService,
-  // menuService,
+  getService,
+  updateService,
 };

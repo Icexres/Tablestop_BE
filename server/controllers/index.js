@@ -1,11 +1,7 @@
 const authController = require('./authController');
-// const restaurantController = require('./restaurantController');
-// const bookingController = require('./bookingController'); 
-// const menuController = require('./menuController');
+const profileController = require('./profileController');
 
 module.exports = {
   authController,
-  // restaurantController,
-  // bookingController,
-  // menuController,
+  profileController,
 };

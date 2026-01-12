@@ -1,13 +1,11 @@
 const express = require('express');
-const { authController } = require('../controllers');
+const { profileController } = require('../controllers');
+const uploader = require('../utils/uploader-multer');
 
 const router = express.Router();
 
-// All routes here will be protected by JWT middleware from app.js
-router.get('/auth/profile', authController.getProfile);
-
-// Add more protected routes here later
-// router.get('/restaurant/my-restaurants', restaurantController.getMyRestaurants);
-    // router.post('/booking/create', bookingController.create);
+// Profile routes (all require authentication)
+router.get('/profile', profileController.getProfile);
+router.put('/profile/complete', uploader.single('profilePic'), profileController.updateCompleteProfile);
 
 module.exports = router;

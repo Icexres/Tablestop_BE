@@ -52,13 +52,13 @@ app.use((req, res, next) => {
   } else {
     res.status(403).json({
       error: 'Auth Token is not supplied',
-    });
+    }); 
   }
 });
 // Protected routes
 // app.use('/api/protected', protectedRoutes);
 
-app.use('/api', protectedRoutes);
+app.use('/api/protected', protectedRoutes);
 /**
  * * Error Handler. Provides full stack - disabled from production
  */
