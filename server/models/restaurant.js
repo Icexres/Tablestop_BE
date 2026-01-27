@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     verified: { type: DataTypes.BOOLEAN, defaultValue: false },
     verified_by: DataTypes.INTEGER,
     verified_at: DataTypes.DATE,
+    rating: { 
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 1,
+        max: 5
+      }
+    },
   }, {
     tableName: 'restaurants',
     timestamps: false,
@@ -22,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     Restaurant.hasMany(models.RestaurantTable, { foreignKey: 'restaurant_id' });
     Restaurant.hasMany(models.Menu, { foreignKey: 'restaurant_id' });
     Restaurant.hasMany(models.Booking, { foreignKey: 'restaurant_id' });
+    Restaurant.hasMany(models.RestaurantTag, { foreignKey: 'restaurant_id' });
   };
 
   return Restaurant;
+
 };
